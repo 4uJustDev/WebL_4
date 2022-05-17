@@ -4,6 +4,9 @@ const animeTittle = document.createElement('p');
 const animeImg = document.createElement('img');
 const animeText = document.createElement('p');
 
+const PrevBtn = document.getElementsByClassName("PrevButton");
+const NextBtn = document.getElementsByClassName("NextButton");
+
 const urlAnime = 'https://anime-facts-rest-api.herokuapp.com/api/v1';
 
 const delay = (ms) =>{
@@ -11,7 +14,7 @@ const delay = (ms) =>{
     setTimeout(()=> response(),ms)
   })
 }
-animeTittle.innerHTML = "Fact from anime: ";
+let item = 0;
 
 async function fetchAsyncTodos(){
   try {
@@ -21,14 +24,16 @@ async function fetchAsyncTodos(){
       const urlFacts = `https://anime-facts-rest-api.herokuapp.com/api/v1/${animeData.data[item].anime_name}`;
       const response2 = await fetch(urlFacts);
       const factsData = await response2.json();
-
-      animeTittle.innerHTML += animeData.data[item].anime_name;
+      
+      animeTittle.innerHTML = `Fact from anime:${animeData.data[item].anime_name} `;
       animeImg.src = animeData.data[item].anime_img;
       for(element in factsData.data){
         animeText.innerHTML = factsData.data[element].fact;
-        await delay(2000);
+        await delay(200);
       }
-      await delay(3000);
+      
+      await delay(200);
+      
     }
   } catch (e) {
     console.error(e);
@@ -36,6 +41,12 @@ async function fetchAsyncTodos(){
     console.log("the end of work async");
   }
 }
+// PrevBtn.addEventListener("click",() =>{
+//   if(item = 1){
+//     item = animeData.data.length -1;
+//   }
+//   item -= 1;
+// });
 
 fetchAsyncTodos();
 //Style
@@ -43,9 +54,11 @@ newCard.style.display = 'flex'
 newCard.style.flexDirection = 'column'
 newCard.style.alignItems = 'center'
 newCard.style.justifyContent = 'center'
+newCard.style.margin = '0px 40px'
 animeImg.style.height = '400px'
 
-animeText.style.maxWidth = '350px'
+animeText.style.maxWidth = '300px'
+animeText.style.minHeight = '100px'
 animeText.style.textAlign = 'center'
 animeText.style.fontWeight = '20px'
 
@@ -53,4 +66,4 @@ newCard.append(animeTittle)
 newCard.append(animeImg)
 newCard.append(animeText)
 
-console.log(animeCards.append(newCard))
+console.log(animeCards.replaceWith(newCard))

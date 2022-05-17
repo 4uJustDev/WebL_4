@@ -7,3 +7,16 @@ body{
     background-color: black;
     color: white;
 }
+.animeCards{
+    width: 50%;
+}
+.Card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn{
+    height: 30px;
+    width: 60px;
+    
+}
