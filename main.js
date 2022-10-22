@@ -29,10 +29,10 @@ async function fetchAsyncTodos(){
       animeImg.src = animeData.data[item].anime_img;
       for(element in factsData.data){
         animeText.innerHTML = factsData.data[element].fact;
-        await delay(200);
+        await delay(500);
       }
       
-      await delay(200);
+      await delay(500);
       
     }
   } catch (e) {
@@ -41,12 +41,6 @@ async function fetchAsyncTodos(){
     console.log("the end of work async");
   }
 }
-// PrevBtn.addEventListener("click",() =>{
-//   if(item = 1){
-//     item = animeData.data.length -1;
-//   }
-//   item -= 1;
-// });
 
 fetchAsyncTodos();
 //Style
